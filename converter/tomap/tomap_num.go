@@ -56,3 +56,29 @@ func (t *ToIntMapInt) Init(origin string) *ToIntMapInt {
 	}
 	return t
 }
+
+// ToIntMapStr 转换为 int->int 字典
+type ToIntMapStr struct {
+	*ToMap[int, string]
+}
+
+func NewToIntMapStr() *ToIntMapStr {
+	return &ToIntMapStr{ToMap: NewToMap[int, string]()}
+}
+
+func (t *ToIntMapStr) EmptyValue() interface{} {
+	return 0
+}
+
+func (t *ToIntMapStr) Init(origin string) *ToIntMapStr {
+	t.SetOriginData(origin)
+	split := strings.Split(t.origin, t.symbol1)
+	for _, s2 := range split {
+		ss := strings.Split(s2, t.symbol2)
+		if len(ss) == 2 {
+			k := cast.ToInt(ss[0])
+			t.SetDataValue(k, ss[1])
+		}
+	}
+	return t
+}
