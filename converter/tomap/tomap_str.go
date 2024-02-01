@@ -19,6 +19,9 @@ func (t *ToStrMapStr) EmptyValue() interface{} {
 
 func (t *ToStrMapStr) Init(origin string) *ToStrMapStr {
 	t.SetOriginData(origin)
+	if t.origin == "" {
+		return t
+	}
 	split := strings.Split(t.origin, t.symbol1)
 	for _, s2 := range split {
 		ss := strings.Split(s2, t.symbol2)

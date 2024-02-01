@@ -18,8 +18,15 @@ func (t *ToStrMapInt) EmptyValue() interface{} {
 	return 0
 }
 
+func (t *ToStrMapInt) IsEmpty() bool {
+	return t.origin == ""
+}
+
 func (t *ToStrMapInt) Init(origin string) *ToStrMapInt {
 	t.SetOriginData(origin)
+	if t.origin == "" {
+		return t
+	}
 	split := strings.Split(t.origin, t.symbol1)
 	for _, s2 := range split {
 		ss := strings.Split(s2, t.symbol2)
@@ -43,8 +50,15 @@ func (t *ToIntMapInt) EmptyValue() interface{} {
 	return 0
 }
 
+func (t *ToIntMapInt) IsEmpty() bool {
+	return t.origin == ""
+}
+
 func (t *ToIntMapInt) Init(origin string) *ToIntMapInt {
 	t.SetOriginData(origin)
+	if t.origin == "" {
+		return t
+	}
 	split := strings.Split(t.origin, t.symbol1)
 	for _, s2 := range split {
 		ss := strings.Split(s2, t.symbol2)
@@ -70,8 +84,15 @@ func (t *ToIntMapStr) EmptyValue() interface{} {
 	return 0
 }
 
+func (t *ToIntMapStr) IsEmpty() bool {
+	return t.origin == ""
+}
+
 func (t *ToIntMapStr) Init(origin string) *ToIntMapStr {
 	t.SetOriginData(origin)
+	if t.origin == "" {
+		return t
+	}
 	split := strings.Split(t.origin, t.symbol1)
 	for _, s2 := range split {
 		ss := strings.Split(s2, t.symbol2)
